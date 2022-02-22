@@ -20,7 +20,8 @@ brew install ffmpeg
 ```bash
 # filter automatically centers the crop if x and y are omitted
 # ffmpeg -i input.mp4 -filter:v "crop=out_w:out_h:x:y" output.mp4
-ffmpeg -i 20181213-game-trailer-30sec-iphone-1920x1080.mp4 -filter:v "crop=1920:886" 20181213-game-trailer-30sec-iphone-1920x886.mp4
+# example crops from 1920x1080 to 1920x886
+ffmpeg -i input-1920x1080.mp4 -filter:v "crop=1920:886" output-1920x886.mp4
 
 ```
 
