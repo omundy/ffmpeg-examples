@@ -5,16 +5,29 @@
 
 ## Installation
 
-```
+```bash
 # install ffmpeg
 brew install ffmpeg
 
 ```
 
 
-### Convert a file
+
+## Crop a video
+
+[Examples](https://video.stackexchange.com/a/4571/25602)
+
+```bash
+# filter automatically centers the crop if x and y are omitted
+# ffmpeg -i input.mp4 -filter:v "crop=out_w:out_h:x:y" output.mp4
+ffmpeg -i 20181213-game-trailer-30sec-iphone-1920x1080.mp4 -filter:v "crop=1920:886" 20181213-game-trailer-30sec-iphone-1920x886.mp4
 
 ```
+
+
+### Convert files
+
+```bash
 
 # convert a video container (format) from FLV to MP4, leaving the codec the same
 ffmpeg -i input.flv -codec copy output.mp4
@@ -26,8 +39,9 @@ ffmpeg -i input.mp4 -vcodec libx265 -crf 20 output.mp4
 ffmpeg -i input.mp4 -crf 20 output.mp4
 
 
-
 # convert MOV to MP4
+ffmpeg -i input.mov -vcodec h264 -acodec aac output.mp4
+# same as ^ + strictly following aac codec (experimental https://stackoverflow.com/a/35247468/441878 )
 ffmpeg -i input.mov -vcodec h264 -acodec aac -strict -2 output.mp4
 
 # convert MOV to WEBM
@@ -38,7 +52,7 @@ ffmpeg -i input.mov -vcodec libvpx -qmin 0 -qmax 50 -crf 10 -b:v 1M -acodec libv
 
 ## Convert multiple files
 
-```
+```bash
 
 # convert the containers (format) for all videos in a directory from FLV to MP4, leaving the codec the same
 for i in *.flv; do ffmpeg -i "$i" -codec copy  "${i%.*}.mp4"; done
