@@ -30,6 +30,9 @@ ffmpeg -i input-1920x1080.mp4 -filter:v "crop=1920:886" output-1920x886.mp4
 
 ```bash
 
+# convert audio file
+ffmpeg -i input.m4a output.wav
+
 # convert a video container (format) from FLV to MP4, leaving the codec the same
 ffmpeg -i input.flv -codec copy output.mp4
 
@@ -54,6 +57,9 @@ ffmpeg -i input.mov -vcodec libvpx -qmin 0 -qmax 50 -crf 10 -b:v 1M -acodec libv
 ## Convert multiple files
 
 ```bash
+
+# convert multiple audio files
+for i in *.m4a; do ffmpeg -i "$i" "${i%.*}.wav"; done
 
 # convert the containers (format) for all videos in a directory from FLV to MP4, leaving the codec the same
 for i in *.flv; do ffmpeg -i "$i" -codec copy  "${i%.*}.mp4"; done
