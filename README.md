@@ -3,12 +3,10 @@
 
 
 
-## Installation
+## Install FFmpeg
 
 ```bash
-# install ffmpeg
 brew install ffmpeg
-
 ```
 
 
@@ -22,11 +20,10 @@ brew install ffmpeg
 # ffmpeg -i input.mp4 -filter:v "crop=out_w:out_h:x:y" output.mp4
 # example crops from 1920x1080 to 1920x886
 ffmpeg -i input-1920x1080.mp4 -filter:v "crop=1920:886" output-1920x886.mp4
-
 ```
 
 
-### Convert files
+## Convert files
 
 ```bash
 
@@ -71,6 +68,6 @@ for i in *.mp4; do ffmpeg -y -i "$i" -crf 20  "../new/${i%.*}.mp4"; done
 
 
 
-### References
+## References
 
-- (Encoding Video for the web)[https://gist.github.com/Vestride/278e13915894821e1d6f]
+1. [Encoding Video for the web](https://gist.github.com/Vestride/278e13915894821e1d6f)
