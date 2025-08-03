@@ -1,6 +1,6 @@
 # ffmpeg-examples
 
-
+https://ffmpeg.lav.io/
 
 
 ## Install FFmpeg
@@ -64,13 +64,14 @@ ffmpeg -i input-1920x1080.mp4 -filter:v "crop=1920:886" output-1920x886.mp4
 for i in ./**/*.m4a; do echo "$i"; done
 
 # for each PATH in containing folders; store and create new DIR_NAME w/o the preceding "./"; and file name, replacing the extension w/mp3; convert to mp3
-for PATH in ./**/*.m4a; \
+# this mostly works but I created a better option here: https://github.com/omundy/convert-music-library
+for FULL_PATH in ./**/*.m4a; \
   do \
-    DIR_NAME="$(dirname "../music-drive-converted/${PATH:2}")"; \
+    DIR_NAME="$(dirname "../music-drive-converted/${FULL_PATH:2}")"; \
     mkdir -p "$DIR_NAME";
-    FILE_NAME=$(basename "$PATH"); \
+    FILE_NAME=$(basename "$FULL_PATH"); \
     NEW_PATH="$DIR_NAME/${FILE_NAME/m4a/mp3}";  \
-    ffmpeg -i "$FILE" -codec:v copy -codec:a libmp3lame -q:a 4 "$NEW_PATH";  \
+    ffmpeg -y -i "$FILE_NAME" -codec:v copy -codec:a libmp3lame -q:a 4 "$NEW_PATH";  \
 done
 
 
